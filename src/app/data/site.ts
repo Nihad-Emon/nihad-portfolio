@@ -17,7 +17,7 @@ export const SITE = {
   /** e.g. 'https://github.com/your-handle' */
   github: 'https://github.com/Nihad-Emon',
   /** Put your PDF in /public (e.g. public/resume.pdf) and set 'resume.pdf'. */
-  resumeUrl: '',
+  resumeUrl: 'resume.pdf',
 
   /** Leave false unless you want the "open to opportunities" indicator. */
   openToWork: false,

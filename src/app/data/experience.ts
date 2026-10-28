@@ -8,15 +8,28 @@ export interface ExperienceItem {
   projects?: string[]; // project slugs
 }
 
-/** Oldest first, so the timeline reads left to right. */
+/** Newest first. */
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    org: 'Quantsys',
-    orgDetail: 'USA · Remote',
-    title: 'Java Developer',
-    focus: 'Backend services',
-    period: 'Jun 2022 – Feb 2023',
-    points: ['Developed and debugged backend services with Java, Spring Boot and MySQL; tested APIs with Postman.'],
+    org: 'HurPal',
+    orgDetail: 'Remote',
+    title: 'Freelance Full Stack Developer',
+    focus: 'SaaS CRM and warehouse products',
+    period: 'Dec 2025 – Present',
+    points: [
+      'Building a SaaS CRM on Angular, Supabase, Go and Clerk.',
+      'Built warehouse-management features and reports.',
+    ],
+    projects: ['hurpal-crm', 'rimal-fastpack'],
+  },
+  {
+    org: 'McDoaw',
+    orgDetail: 'Microsoft Dynamics consultancy · Remote',
+    title: 'Freelance Full Stack Developer',
+    focus: 'WordPress and frontend',
+    period: 'Dec 2025 – Present',
+    points: ['Built WordPress landing and service pages, including an interactive savings simulator.'],
+    projects: ['mcdoaw-web'],
   },
   {
     org: 'Square InformatiX Ltd.',
@@ -33,17 +46,12 @@ export const EXPERIENCE: ExperienceItem[] = [
     projects: ['enterprise-hrms'],
   },
   {
-    org: 'International clients',
-    orgDetail: 'Remote',
-    title: 'Freelance Full Stack Developer',
-    focus: 'SaaS, warehouse and web projects',
-    period: 'Dec 2025 – Present',
-    points: [
-      'Building a SaaS CRM on Angular, Supabase, Go and Clerk.',
-      'Built warehouse-management features and reports.',
-      'Built WordPress landing and service pages for a Microsoft Dynamics consultancy.',
-    ],
-    projects: ['hurpal-crm', 'rimal-fastpack', 'mcdoaw-web'],
+    org: 'Quantsys',
+    orgDetail: 'USA · Remote',
+    title: 'Java Developer',
+    focus: 'Backend services',
+    period: 'Jun 2022 – Feb 2023',
+    points: ['Developed and debugged backend services with Java, Spring Boot and MySQL; tested APIs with Postman.'],
   },
   {
     org: 'NSoftBD',

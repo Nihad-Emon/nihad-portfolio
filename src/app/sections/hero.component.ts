@@ -183,7 +183,7 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
 })
 export class HeroComponent {
   protected site = SITE;
-  protected orgs = ['Square Group', 'Quantsys', 'International clients', 'NSoftBD'];
+  protected orgs = ['Square Group', 'HurPal', 'McDoaw', 'Quantsys', 'NSoftBD'];
   protected projects = PROJECTS.length;
   protected teams = EXPERIENCE.length;
   protected products = PROJECTS.filter(p => p.kind === 'Product').length;
