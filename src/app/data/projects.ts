@@ -287,36 +287,6 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'rail-chalak',
-    alias: 'Train Simulator Game',
-    title: 'Rail Chalak',
-    org: 'Personal',
-    kind: 'Personal project',
-    category: 'personal',
-    status: 'In development',
-    summary:
-      'A Bangladesh Railway train simulator for mobile, with real routes, stations and liveries. Android first, iOS later.',
-    tagline: 'A 3D train simulator for mobile.',
-    mockup: 'rail',
-    stack: ['Android'],
-    overview:
-      'Rail Chalak (রেলচালক) is a 3D train simulator built around Bangladesh Railway: real routes, real station lists and familiar liveries.',
-    context:
-      'Train simulators rarely represent Bangladesh. Rail Chalak aims to let people drive the routes they actually travel.',
-    role: 'Solo developer.',
-    contributions: [
-      'Route and station data based on real Bangladesh Railway lines.',
-      'Mobile-first design, with Android as the first platform.',
-    ],
-    challenges: [
-      {
-        title: 'Accurate real-world data',
-        body: 'Station order and route structure have to match the real network, which means careful research rather than approximation.',
-      },
-    ],
-    links: [],
-  },
-  {
     slug: 'shipkoro',
     alias: 'Order Management Tool',
     title: 'ShipKoro',
