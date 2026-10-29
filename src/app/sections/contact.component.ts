@@ -15,7 +15,10 @@ import { RevealDirective, MagneticDirective } from '../shared/motion.directives'
           <h2 id="contact-title">Let’s build <span class="grad-text">something great</span> together.</h2>
           <p class="lede">Open to meaningful engineering challenges and collaborative teams.</p>
           <a class="email" [href]="'mailto:' + site.email">{{ site.email }}<app-icon name="arrowUpRight" /></a>
+          <p class="alt">Business enquiries: <a [href]="'mailto:' + site.businessEmail">{{ site.businessEmail }}</a></p>
           <ul class="links">
+            <li><a [href]="'https://wa.me/' + site.phoneDigits" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a [href]="'tel:+' + site.phoneDigits">{{ site.phone }}</a></li>
             @if (site.linkedin) { <li><a [href]="site.linkedin" target="_blank" rel="noopener">LinkedIn</a></li> }
             @if (site.github) { <li><a [href]="site.github" target="_blank" rel="noopener">GitHub</a></li> }
             @if (site.resumeUrl) { <li><a [href]="site.resumeUrl" download>Download resume</a></li> }
@@ -63,6 +66,9 @@ import { RevealDirective, MagneticDirective } from '../shared/motion.directives'
       letter-spacing: -.02em; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: .2rem; --icon-size: 22px; word-break: break-all; }
     .email { background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px no-repeat; transition: color .2s, background-size .4s var(--ease); }
     .email:hover { color: var(--accent); }
+    .alt { margin-top: 1.1rem; color: var(--faint); font-size: .9rem; }
+    .alt a { color: var(--muted); text-underline-offset: 3px; text-decoration-color: var(--line-strong); }
+    .alt a:hover { color: var(--text); }
     .links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: .75rem 1.75rem; }
     .links a { color: var(--text); font-weight: 500; text-underline-offset: 4px; text-decoration-color: var(--line-strong); }
     .links a:hover { text-decoration-color: var(--accent); }

@@ -6,6 +6,9 @@ export interface ExperienceItem {
   period: string;
   points: string[];
   projects?: string[]; // project slugs
+  url?: string;
+  /** Optional logo shown instead of the name. Needs `images/<logo>-dark.png` and `images/<logo>.png`. */
+  logo?: string;
 }
 
 /** Newest first. */
@@ -56,6 +59,8 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     org: 'NSoftBD',
     orgDetail: 'My software company · Dhaka',
+    url: 'https://nsoftbd.com/',
+    logo: 'nsoftbd-logo',
     title: 'Founder',
     focus: 'Products and client builds',
     period: '',

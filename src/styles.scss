@@ -171,6 +171,11 @@ p { margin: 0; text-wrap: pretty; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
 
+/* NSoftBD logo: pick the variant that suits the theme */
+.logo-light { display: none; }
+:root[data-theme="light"] .logo-dark { display: none; }
+:root[data-theme="light"] .logo-light { display: inline-block; }
+
 /* Page-to-page transitions */
 ::view-transition-old(root) { animation: .25s ease both vt-out; }
 ::view-transition-new(root) { animation: .45s var(--ease) both vt-in; }

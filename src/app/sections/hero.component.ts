@@ -37,6 +37,7 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
               <a class="text-link" [href]="site.resumeUrl" download>Download resume</a>
             }
             <span class="socials">
+              <a [href]="'https://wa.me/' + site.phoneDigits" target="_blank" rel="noopener" aria-label="WhatsApp"><app-icon name="whatsapp" /></a>
               @if (site.linkedin) { <a [href]="site.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" /></a> }
               @if (site.github) { <a [href]="site.github" target="_blank" rel="noopener" aria-label="GitHub"><app-icon name="github" /></a> }
             </span>

@@ -35,9 +35,15 @@ import { RevealDirective } from '../shared/motion.directives';
             @for (e of [current()]; track e.org) {
               <article>
                 <p class="eyebrow-sm">{{ e.period }}{{ e.period && e.orgDetail ? ' · ' : '' }}{{ e.orgDetail }}</p>
-                <h3>{{ e.org }}</h3>
+                <h3>
+                  @if (e.logo) {
+                    <img class="logo logo-dark" [src]="'images/' + e.logo + '-dark.png'" [alt]="e.org" height="40" />
+                    <img class="logo logo-light" [src]="'images/' + e.logo + '.png'" [alt]="e.org" height="40" />
+                  } @else { {{ e.org }} }
+                </h3>
                 @if (e.title) { <span class="tag">{{ e.title }}</span> }
                 <p class="focus">{{ e.focus }}</p>
+                @if (e.url) { <a class="visit" [href]="e.url" target="_blank" rel="noopener">Visit nsoftbd.com ↗</a> }
                 @if (e.projects?.length) {
                   <p class="rel">
                     @for (slug of e.projects; track slug) {
@@ -79,6 +85,9 @@ import { RevealDirective } from '../shared/motion.directives';
     .eyebrow-sm { font: 500 .75rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: .8rem; }
     h3 { font-size: var(--step-3); display: inline-block; margin-right: .75rem; }
     .focus { color: var(--accent); font-weight: 500; font-size: var(--step-1); margin-top: .6rem; }
+    .logo { height: 40px; width: auto; vertical-align: middle; }
+    .visit { display: inline-block; margin-top: 1.25rem; font-weight: 500; font-size: .92rem; color: var(--accent); text-decoration: none; }
+    .visit:hover { text-decoration: underline; text-underline-offset: 4px; }
     .rel { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
     .rel a { font-size: .85rem; text-decoration: none; padding: .45rem .85rem; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--muted);
       transition: color .2s, border-color .2s, background-color .2s; }
