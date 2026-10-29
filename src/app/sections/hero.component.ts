@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SITE } from '../data/site';
 import { PROJECTS } from '../data/projects';
-import { EXPERIENCE } from '../data/experience';
 import { ScrollService } from '../core/scroll.service';
 import { IconComponent } from '../shared/icon.component';
 import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/motion.directives';
@@ -71,7 +70,14 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
           <div><dd><span [countUp]="projects">{{ projects }}</span>+</dd><dt>Projects delivered</dt></div>
           <div><dd><span [countUp]="4">4</span>+</dd><dt>Years of experience</dt></div>
           <div><dd><span [countUp]="products">{{ products }}</span></dd><dt>Own products built</dt></div>
-          <div><dd><span [countUp]="3">3</span></dd><dt>Layers owned, UI to DB</dt></div>
+          <div class="has-tip" tabindex="0" aria-describedby="layers-tip" (mouseenter)="place($event)" (focus)="place($event)">
+            <dd><span [countUp]="layers.length">{{ layers.length }}</span></dd>
+            <dt>Layers owned, idea to launch <i class="info" aria-hidden="true">i</i></dt>
+            <span class="tip" id="layers-tip" role="tooltip">
+              <b>From idea to launch</b>
+              <ol>@for (l of layers; track l) { <li>{{ l }}</li> }</ol>
+            </span>
+          </div>
         </dl>
         <div class="proof">
           <span>Worked with</span>
@@ -81,10 +87,10 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
     </section>
   `,
   styles: `
-    .hero { position: relative; margin-top: -70px; padding-top: calc(70px + clamp(2.5rem, 7vw, 5.5rem)); overflow: hidden; isolation: isolate; }
+    .hero { position: relative; margin-top: -70px; padding-top: calc(70px + clamp(2.5rem, 7vw, 5.5rem)); z-index: 2; isolation: isolate; }
 
     /* Animated aurora backdrop */
-    .aurora { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
+    .aurora { position: absolute; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
     .aurora i { position: absolute; border-radius: 50%; filter: blur(100px); opacity: .42; will-change: transform; }
     .aurora i:nth-child(1) { width: 46vw; height: 46vw; max-width: 640px; max-height: 640px; background: var(--accent); top: -14%; right: -6%; animation: drift1 18s ease-in-out infinite alternate; }
     .aurora i:nth-child(2) { width: 34vw; height: 34vw; max-width: 460px; max-height: 460px; background: var(--violet); top: 22%; left: -10%; opacity: .26; animation: drift2 22s ease-in-out infinite alternate; }
@@ -149,7 +155,7 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
     @media (max-width: 979px) { .gcard { display: none; } }
     .statbar { margin: clamp(3rem, 6vw, 4.5rem) 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;
       border: 1px solid var(--line-strong); border-radius: 22px; background: var(--glass);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); overflow: hidden; }
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
     @media (min-width: 820px) { .statbar { grid-template-columns: repeat(4, 1fr); } }
     .statbar div { display: flex; flex-direction: column-reverse; gap: .3rem; padding: 1.6rem 1.5rem; text-align: center;
       border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -157,6 +163,23 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
     @media (min-width: 820px) { .statbar div { border-bottom: 0; border-right: 1px solid var(--line) !important; } .statbar div:last-child { border-right: 0 !important; } }
     .statbar dd { margin: 0; font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); font-weight: 600; letter-spacing: -.03em; font-variant-numeric: tabular-nums;
       background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .statbar div:first-child { border-radius: 22px 0 0 22px; } .statbar div:last-child { border-radius: 0 22px 22px 0; }
+    .has-tip { position: relative; cursor: help; outline-offset: -4px; }
+    .info { display: inline-grid; place-items: center; width: 15px; height: 15px; margin-left: .3rem; border-radius: 50%; vertical-align: 1px;
+      border: 1px solid var(--line-strong); color: var(--muted); font: 600 .62rem/1 var(--font); font-style: normal; }
+    .tip { position: absolute; z-index: 5; right: 1rem; bottom: calc(100% - .4rem); width: 250px; padding: 1rem 1.1rem; text-align: left;
+      border-radius: 16px; border: 1px solid var(--line-strong); background: color-mix(in srgb, var(--surface) 94%, transparent);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .8);
+      opacity: 0; visibility: hidden; transform: translateY(6px); pointer-events: none;
+      transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s; }
+    .tip b { display: block; margin-bottom: .6rem; font-size: .82rem; color: var(--text); }
+    .tip ol { list-style: none; counter-reset: l; margin: 0; padding: 0; display: grid; gap: .4rem; }
+    .tip li { counter-increment: l; display: flex; align-items: center; gap: .65rem; font-size: .84rem; color: var(--muted); }
+    .tip li::before { content: counter(l); display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 6px;
+      background: var(--accent-soft); color: var(--accent); font: 500 .7rem/1 var(--mono); }
+    .has-tip.below .tip { bottom: auto; top: calc(100% - .4rem); transform: translateY(-6px); }
+    .has-tip:hover .tip, .has-tip:focus .tip, .has-tip:focus-within .tip { opacity: 1; visibility: visible; transform: none; }
+    .has-tip:hover .info, .has-tip:focus .info { border-color: var(--accent); color: var(--accent); }
     .statbar dt { color: var(--muted); font-size: .85rem; }
     .proof { margin-top: 1.5rem; padding-block: 1.4rem;
       display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 2rem; }
@@ -185,9 +208,14 @@ import { CountUpDirective, TiltDirective, MagneticDirective } from '../shared/mo
 export class HeroComponent {
   protected site = SITE;
   protected orgs = ['Square Group', 'HurPal', 'McDoaw', 'Quantsys', 'NSoftBD'];
-  protected projects = PROJECTS.length;
-  protected teams = EXPERIENCE.length;
+  protected projects = SITE.projectsDelivered;
+  protected layers = SITE.layers;
   protected products = PROJECTS.filter(p => p.kind === 'Product').length;
   private scroll = inject(ScrollService);
+  /** Open the tooltip downward when there isn't room above it (e.g. under the sticky nav). */
+  place(e: Event) {
+    const el = e.currentTarget as HTMLElement;
+    el.classList.toggle('below', el.getBoundingClientRect().top < 360);
+  }
   go(e: Event, id: string) { e.preventDefault(); this.scroll.toSection(id); }
 }

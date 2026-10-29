@@ -26,6 +26,11 @@ export const SITE = {
   /** Put your PDF in /public (e.g. public/resume.pdf) and set 'resume.pdf'. */
   resumeUrl: 'resume.pdf',
 
+  /** Shown in the hero stat bar as "N+ projects delivered". */
+  projectsDelivered: 20,
+  /** Shown in the hero tooltip; the "Layers owned" number is this list's length. */
+  layers: ['Analysis & planning', 'UI/UX design', 'Frontend', 'Backend & APIs', 'Database', 'Deployment & support'],
+
   /** Leave false unless you want the "open to opportunities" indicator. */
   openToWork: false,
 };

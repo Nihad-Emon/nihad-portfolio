@@ -15,7 +15,7 @@ export interface ExperienceItem {
 export const EXPERIENCE: ExperienceItem[] = [
   {
     org: 'Freelance',
-    orgDetail: 'HurPal & McDoaw · Remote',
+    orgDetail: 'HurPal & McDoaw · USA · Remote',
     title: 'Full Stack Developer',
     focus: 'SaaS, warehouse and web projects',
     period: 'Dec 2025 – Present',
